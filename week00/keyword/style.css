@@ -1,0 +1,10 @@
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: purple;
+  color: white;
+  box-sizing: border-box;
+  position: relative;
+  left: 50px;
+  top: 50px;
+}
