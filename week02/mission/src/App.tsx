@@ -1,24 +1,12 @@
 import './App.css';
-import { useState } from 'react';
-
-export default function App() {
-  const [count, setCount] = useState<number>(0);
+import Todo from './components/Todo';
+import { TodoProvider } from './context/TodoContext';
+function App() {
   return (
-    <>
-      <h1>Count</h1>
-      <button
-        onClick={() => {
-          setCount(count + 1);
-        }}>
-        +1
-      </button>
-      <button
-        onClick={() => {
-          setCount(count - 1);
-        }}>
-        -1
-      </button>
-      <div>{count}</div>
-    </>
+    <TodoProvider>
+      <Todo></Todo>
+    </TodoProvider>
   );
 }
+
+export default App;
