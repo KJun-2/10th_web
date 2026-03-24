@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="style.css" />
+    <title>ToDo</title>
+    <script
+      src="./dist/todo.js"
+      defer></script>
+  </head>
+
+  <body>
+    <div class="todo-container">
+      <h1 class="todo-container__header">My ToDo</h1>
+
+      <form
+        id="todo-form"
+        class="todo-container__form">
+        <input
+          id="todo-input"
+          type="text"
+          class="todo-container__input" />
+
+        <button class="todo-container__button">할 일 추가</button>
+      </form>
+
+      <div class="render-container">
+        <div class="render-container__section">
+          <p class="render-container__title">할 일</p>
+
+          <ul
+            id="todo-list"
+            class="render-container__list"></ul>
+        </div>
+
+        <div class="render-container__section">
+          <p class="render-container__title">완료</p>
+
+          <ul
+            id="done-list"
+            class="render-container__list"></ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
