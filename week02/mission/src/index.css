@@ -1,13 +1,8 @@
+@import 'tailwindcss';
 
-
-.container{
+body {
   display: flex;
   justify-content: center;
-  height: 800px;
-  width: 600px;
-
-}
-
-button{
-  height  : 60px;
+  align-items: center;
+  height: 100vh;
 }
