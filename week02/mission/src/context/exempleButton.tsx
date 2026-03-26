@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme, THEME } from './ThemeProvider';
+import { useTheme, THEME } from './exempleProvider';
 import clsx from 'clsx';
 
 const ThemeToggleButton = () => {
