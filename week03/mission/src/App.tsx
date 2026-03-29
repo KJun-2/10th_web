@@ -1,41 +1,10 @@
 import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-interface page {
-  id: number;
-  name: string;
-  url: string;
-}
-const pages: page[] = [
-  {
-    id: 1,
-    name: 'home',
-    url: '/home',
-  },
-  {
-    id: 2,
-    name: 'GyeongJun',
+import MoviePage from './pages/moviePage';
 
-    url: '/GyeongJun',
-  },
-  {
-    id: 3,
-    name: 'Memo',
-
-    url: '/MeMo',
-  },
-  {
-    id: 4,
-    name: 'Context',
-
-    url: '/Context',
-  },
-];
 function App() {
-  return (
-    <div>
-      <button>pages.naem</button>
-    </div>
-  );
+  return <MoviePage></MoviePage>;
 }
 
 export default App;
