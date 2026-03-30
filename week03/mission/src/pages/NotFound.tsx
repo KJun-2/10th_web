@@ -1,9 +1,5 @@
-import React from 'react'
-
 function NotPound() {
-  return (
-    <div>NotPound</div>
-  )
+  return <div>NotPound</div>;
 }
 
-export default NotPound
+export default NotPound;

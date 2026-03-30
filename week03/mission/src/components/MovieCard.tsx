@@ -18,15 +18,15 @@ function MovieCard({ movie }: MoveCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}>
       <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.name}
+        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+        alt={movie.title}
       />
 
       {isHovered && (
         <div
           className="absolute inset-0  from-black/50 to-transparent 
         backdrop-blur-md text-white flex flex-col justify-center items-center p-4">
-          <h2 className="text-lg font-bold">{movie.name}</h2>
+          <h2 className="text-lg font-bold">{movie.title}</h2>
           <p className="text-sm text-gray-50 leading-relaxed mt-2 line-clamp-5">{movie.overview}</p>
         </div>
       )}
