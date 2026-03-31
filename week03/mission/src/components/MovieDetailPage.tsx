@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import type { Movie } from '../types/movies';
+import { type ProfileType, type Movie } from '../types/movies';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
@@ -11,6 +11,7 @@ function MovieDetailPage() {
   const [movie, setMovie] = useState<Movie>();
   const [isError, setIsError] = useState(false);
   const [isPending, setIsPending] = useState(false);
+  const [profiles, setProfiles] = useState<ProfileType>();
 
   useEffect(() => {
     if (!movieId) return;
@@ -20,13 +21,20 @@ function MovieDetailPage() {
         setIsPending(true);
         setIsError(false);
 
-        const { data } = await axios.get<Movie>(`https://api.themoviedb.org/3/movie/${movieId}`, {
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
-          },
-        });
-
-        setMovie(data);
+        const [detailres, profileres] = await Promise.all([
+          axios.get<Movie>(`https://api.themoviedb.org/3/movie/${movieId}`, {
+            headers: {
+              Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
+            },
+          }),
+          await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
+            headers: {
+              Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
+            },
+          }),
+        ]);
+        setProfiles(profileres.data);
+        setMovie(detailres.data);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -42,7 +50,7 @@ function MovieDetailPage() {
   if (!movie) return null;
 
   return (
-    <>
+    <div className='bg-black'>
       <div>
         <div className="relative w-full h-400px md:h-500px mb-8 rounded-xl overflow-hidden flex items-end">
           <img
@@ -66,8 +74,20 @@ function MovieDetailPage() {
             <p className="text-xs md:text-sm leading-relaxed text-gray-200 max-w-4xl line-clamp-5 md:line-clamp-6 opacity-90">{movie.overview}</p>
           </div>
         </div>
+        <h1 className='font-bold text-5xl mb-11 text-white'>감독/출연</h1>
       </div>
-    </>
+      <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7  ">
+        {profiles?.cast.map((profile) => (
+          <div key={profile.id}>
+            <img className='rounded-full size-30 p-3'
+              src={`https://image.tmdb.org/t/p/w1280/${profile.profile_path}`}
+              alt="프로필 사진"
+            />
+            <h5 className='text-white'>{profile.name}</h5>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
