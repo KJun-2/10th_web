@@ -10,8 +10,7 @@ function MoviePage() {
   const [isPending, setIsPending] = useState(false);
   const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
-  const { catagory } = useParams<{ catagory: string }>();
-
+  const { catagory} = useParams<{ catagory: string }>();
   useEffect(() => {
     const fetchMovies = async () => {
       setIsPending(true);
