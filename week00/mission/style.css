@@ -1,0 +1,121 @@
+/* 기본 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    'Pretendard',
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    sans-serif;
+  background-color: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #333;
+}
+
+/* 메인 컨테이너 */
+.container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.container-header {
+  text-align: center;
+  color: #4a90e2;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+/* 입력 폼 */
+.container-form {
+  margin-bottom: 2rem;
+}
+
+#todo-input {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #e1e8ed;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#todo-input:focus {
+  border-color: #4a90e2;
+}
+
+/* 리스트 섹션 레이아웃 */
+.list-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+}
+
+.list-section {
+  flex: 1;
+}
+
+.list-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #f0f0f0;
+  color: #555;
+}
+
+.list {
+  list-style: none;
+  min-height: 50px;
+}
+
+.list li {
+  background: #f9f9f9;
+  margin-bottom: 8px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.list li:hover {
+  transform: translateX(5px);
+}
+
+#done li {
+  background-color: #f0f0f0;
+  text-decoration: line-through;
+  color: #888;
+  opacity: 0.8;
+}
+
+.list li button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.list li button.complete-btn {
+  background-color: #51cf66;
+  margin-right: 5px;
+}

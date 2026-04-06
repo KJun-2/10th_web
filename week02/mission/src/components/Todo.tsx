@@ -1,39 +1,18 @@
-import { useTodo } from '../context/TodoContext';
-import TodoForm from './TodoForm';
-import TodoList from './TodoList';
-import ThemeToggleButton from '../context/ThemeToggleButton';
-import { THEME, useTheme } from '../context/ThemeProvider';
+import Button from './Button';
+import { THEME, useTheme } from '../context/ContextPractice';
+
 import clsx from 'clsx';
-
 function Todo() {
-  const { deleteTask, doneTask, todos, doneTodos } = useTodo();
-
-  const { theme, toggleTheme } = useTheme();
-  const isLightMode = theme === THEME.LIGHT;
+  const { theme, toggleButton } = useTheme();
+  const isLight = theme === THEME.LIGHT;
   return (
-    <div className={clsx(isLightMode ? 'bg-white' : 'bg-gray-800')}>
-      <nav className={clsx('p-4 w-full flex justifiy-end', isLightMode ? 'bg-white' : 'bg-gray-800')}>
-        <ThemeToggleButton />
-      </nav>
-      <h1 className="todo-container__header">To DO</h1>
-
-      <TodoForm />
-      <div className="render-container">
-        <TodoList
-          title="할일"
-          todos={todos}
-          buttonLabel="완료"
-          buttonColor="#27a745"
-          onClick={doneTask}
-        />
-        <TodoList
-          title="완료"
-          todos={doneTodos}
-          buttonLabel="삭제"
-          buttonColor="#dc3545"
-          onClick={deleteTask}
-        />
-      </div>
+    <div
+      className={clsx('items-center w-100 h-100  rounded-[10px]', {
+        'bg-black text-white border-black': isLight,
+        'bg-white text-black border-white': !isLight,
+      })}>
+      <h1 className={'text-center text-xl font-bold'}>My Text</h1>
+      <Button></Button>
     </div>
   );
 }
