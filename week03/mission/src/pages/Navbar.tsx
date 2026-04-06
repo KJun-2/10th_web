@@ -10,7 +10,7 @@ const LINKS = [
 
 function Navbar() {
   return (
-    <div className="felx gap-3 p-4">
+    <div className="felx  p-10">
       {LINKS.map(({ to, label }) => (
         <NavLink
           key={to}

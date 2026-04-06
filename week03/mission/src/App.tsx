@@ -3,13 +3,17 @@ import MoviePage from './pages/moviePage';
 import HomePage from './pages/HomePage';
 import NotFound from './pages/NotFound';
 import MovieDetailPage from './components/MovieDetailPage';
-
+import { RootLayout } from './layout/root-layout';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage></HomePage>,
+    element: <RootLayout></RootLayout>,
     errorElement: <NotFound></NotFound>,
     children: [
+      {
+        index: true,
+        element: <HomePage></HomePage>,
+      },
       {
         path: 'movies/:catagory',
         element: <MoviePage></MoviePage>,
