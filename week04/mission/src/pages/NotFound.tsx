@@ -1,5 +1,5 @@
-function NotPound() {
-  return <div>NotPound</div>;
+function NotFound() {
+  return <div>NotFound</div>;
 }
 
-export default NotPound;
+export default NotFound;
