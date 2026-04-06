@@ -1,7 +1,10 @@
 import useForm from '../hooks/useForm';
 import { validateSignin, type UserSigninInformation } from '../utils/validate';
-
-function LoginPage() {
+import { postSignin } from '../apis/auth';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { LOCAL_STORAGE_KEY } from '../constants/key';
+const LoginPage = () => {
+  const { setItem } = useLocalStorage(LOCAL_STORAGE_KEY.accessToken);
   const { values, errors, touched, getInputProps } = useForm<UserSigninInformation>({
     initialValue: {
       email: '',
@@ -10,8 +13,14 @@ function LoginPage() {
     validate: validateSignin,
   });
 
-  const handleSubmit = () => {
-    console.log(values);
+  const handleSubmit = async () => {
+    try {
+      const response = await postSignin(values);
+      setItem(response.data.accessToken);
+      console.log(response);
+    } catch (error) {
+      alert(error?.message);
+    }
   };
 
   const isDisabled = Object.values(errors || {}).some((error) => error.length > 0) || Object.values(values).some((val) => !val);
@@ -19,7 +28,6 @@ function LoginPage() {
   return (
     <div className="flex flex-col items-center justify-center h-full gap-4">
       <div className="flex flex-col gap-3">
-        {/* 이메일 입력란 */}
         <div className="flex flex-col gap-1">
           <input
             {...getInputProps('email')}
@@ -55,6 +63,6 @@ function LoginPage() {
       </div>
     </div>
   );
-}
+};
 
 export default LoginPage;
