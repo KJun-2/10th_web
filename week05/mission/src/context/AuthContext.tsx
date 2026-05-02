@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         const newRefreshToken = data.refreshToken;
 
         setAccessTokenInStorage(newAccessToken);
-        setRefreshTokenInStorage(newAccessToken);
+        setRefreshTokenInStorage(newRefreshToken);
 
         setAccessToken(newAccessToken);
         setRefreshToken(newRefreshToken);
