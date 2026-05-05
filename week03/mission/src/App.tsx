@@ -1,41 +1,33 @@
-import React from 'react';
-
-interface page {
-  id: number;
-  name: string;
-  url: string;
-}
-const pages: page[] = [
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import MoviePage from './pages/moviePage';
+import HomePage from './pages/HomePage';
+import NotFound from './pages/NotFound';
+import MovieDetailPage from './components/MovieDetailPage';
+import { RootLayout } from './layout/root-layout';
+const router = createBrowserRouter([
   {
-    id: 1,
-    name: 'home',
-    url: '/home',
+    path: '/',
+    element: <RootLayout></RootLayout>,
+    errorElement: <NotFound></NotFound>,
+    children: [
+      {
+        index: true,
+        element: <HomePage></HomePage>,
+      },
+      {
+        path: 'movies/:catagory',
+        element: <MoviePage></MoviePage>,
+      },
+      {
+        path: 'movie/:movieId',
+        element: <MovieDetailPage />,
+      },
+    ],
   },
-  {
-    id: 2,
-    name: 'GyeongJun',
+]);
 
-    url: '/GyeongJun',
-  },
-  {
-    id: 3,
-    name: 'Memo',
-
-    url: '/MeMo',
-  },
-  {
-    id: 4,
-    name: 'Context',
-
-    url: '/Context',
-  },
-];
 function App() {
-  return (
-    <div>
-      <button>pages.naem</button>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
