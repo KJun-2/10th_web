@@ -1,11 +1,14 @@
 import './App.css';
 import Todo from './components/Todo';
-import ThemeContextProvier from '../src/context/ContextPractice';
+import { TodoProvider } from './context/TodoContext';
+import { ThemeProvider } from './context/ThemeProvider';
 function App() {
   return (
-    <ThemeContextProvier>
-      <Todo></Todo>
-    </ThemeContextProvier>
+    <ThemeProvider>
+      <TodoProvider>
+        <Todo></Todo>
+      </TodoProvider>
+    </ThemeProvider>
   );
 }
 
