@@ -1,11 +1,17 @@
 import { Lp } from '../../types/lp';
+import { useNavigate } from 'react-router-dom';
+
 interface LpCardProps {
   lp: Lp;
 }
 
 function LpCard({ lp }: LpCardProps) {
+  const navigate = useNavigate();
+
   return (
-    <div className={'relative rounded-lg overflow-hidden shadow-2xl transition-shadow duration-300'}>
+    <div
+    onClick={() => navigate(`/v1/lps/${lp.id}`)}
+    className={'cursor-pointer relative rounded-lg overflow-hidden shadow-2xl transition-shadow duration-300'}>
       <img
         src={lp.thumbnail}
         alt={lp.title}
