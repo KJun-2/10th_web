@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import HomeLayout from './layouts/HomeLayout';
 import SignupPage from './pages/SignupPage';
 import Mypage from './pages/MyPage';
+import ThrottlePage from './pages/ThrottlePage';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedLayout from './layouts/ProtectedLayout';
 import { GoogleLoginRedirectPage } from './pages/GoogleLoginRedirectPage';
@@ -39,6 +40,10 @@ const publicRoutes: RouteObject[] = [
       {
         path: 'v1/lps/:lpId',
         element: <LpDetailPage />,
+      },
+      {
+        path: '/throttle',
+        element: <ThrottlePage />,
       },
     ],
   },

@@ -5,7 +5,8 @@ import { useInView } from 'react-intersection-observer';
 import LpCard from '../components/LpCard/LpCard';
 import LpCardSkeletonList from '../components/LpCard/LpCardSkeletonList';
 import useDebounce from '../hooks/useDebounce';
-import { SEARCH_DEBOUNCE_DELAY } from '../constants/delay';
+import { useThrottledCallback } from '../hooks/useThrottle';
+import { SEARCH_DEBOUNCE_DELAY, SCROLL_THROTTLE_DELAY } from '../constants/delay';
 
 function HomePage() {
   const [search, setSearch] = useState('');
@@ -13,17 +14,18 @@ function HomePage() {
   const debouncedSearch = useDebounce(search, SEARCH_DEBOUNCE_DELAY).trim();
 
 
-  const { data: lps, isFetching, hasNextPage, isPending, isError, fetchNextPage } = useGetInfiniteLpList(50, debouncedSearch, PAGINATION_ORDER.desc);
+  const { data: lps, isFetchingNextPage, hasNextPage, isPending, isError, fetchNextPage } =
+    useGetInfiniteLpList(50, debouncedSearch, PAGINATION_ORDER.desc);
 
-  const { ref, inView } = useInView({
-    threshold: 0,
-  });
+  const { ref, inView } = useInView({ threshold: 0 });
+
+  const loadMore = useThrottledCallback(() => {
+    if (hasNextPage && !isFetchingNextPage) fetchNextPage();
+  }, SCROLL_THROTTLE_DELAY, debouncedSearch);
 
   useEffect(() => {
-    if (inView) {
-      !isFetching && hasNextPage && fetchNextPage();
-    }
-  }, [inView, isFinite, hasNextPage, fetchNextPage]);
+    if (inView && hasNextPage && !isFetchingNextPage) loadMore();
+  }, [inView, hasNextPage, isFetchingNextPage, loadMore]);
 
   if (isError) {
     return <div>Error...</div>;
@@ -58,7 +60,7 @@ function HomePage() {
                 key={lp.id}
                 lp={lp}></LpCard>
             ))}
-          {isFetching && <LpCardSkeletonList count={20} />}
+          {isFetchingNextPage && <LpCardSkeletonList count={20} />}
           <div ref={ref} className="h-2" />
         </div>
       </div>
