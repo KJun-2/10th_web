@@ -7,8 +7,10 @@ import HomeLayout from './layouts/HomeLayout';
 import SignupPage from './pages/SignupPage';
 import Mypage from './pages/MyPage';
 import { AuthProvider } from './context/AuthContext';
-import  ProtectedLayout  from './layouts/ProtectedLayout';
+import ProtectedLayout from './layouts/ProtectedLayout';
 import { GoogleLoginRedirectPage } from './pages/GoogleLoginRedirectPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 //publicRoutes
 const publicRoutes: RouteObject[] = [
@@ -51,13 +53,18 @@ const protectedRoutes: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter([...publicRoutes,...protectedRoutes]);
+const router = createBrowserRouter([...publicRoutes, ...protectedRoutes]);
+
+export const queryClient = new QueryClient();
 
 function App() {
   return (
-    <AuthProvider>
-      <RouterProvider router={router}></RouterProvider>;
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router}></RouterProvider>;
+      </AuthProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
