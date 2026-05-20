@@ -4,9 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-
 const LoginPage = () => {
-  const { login,accessToken } = useAuth();
+  const { login, accessToken } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
     if (accessToken) {
@@ -24,6 +23,10 @@ const LoginPage = () => {
 
   const handleSubmit = async () => {
     await login(values);
+  };
+
+  const handleGoogleLogin = () => {
+    window.location.href = import.meta.env.VITE_SERVER_API_URL + `v1/auth/google/login`;
   };
 
   const isDisabled = Object.values(errors || {}).some((error) => error.length > 0) || Object.values(values).some((val) => !val);
@@ -62,6 +65,21 @@ const LoginPage = () => {
           disabled={isDisabled}
           onClick={handleSubmit}>
           Login
+        </button>
+
+        <button
+          className={`w-full bg-blue-600 text-white rounded-sm font-medium hover:bg-blue-700 py-3 transition-colors cursor-pointer
+            disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed`}
+          type="button"
+          onClick={handleGoogleLogin}>
+          <div className="flex items-center justify-center gap-4">
+            <img
+              src="/images/2702602.png"
+              alt="구글이미지"
+              width={20}
+            />
+            <span>Google Login</span>
+          </div>
         </button>
       </div>
     </div>
