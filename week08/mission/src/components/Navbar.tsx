@@ -1,16 +1,27 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Hamburgar from './Hamburgar';
+import useSidebar from '../hooks/useSidebar';
+import Sidebar from './Sidebar';
 
 function Navbar() {
   const { accessToken } = useAuth();
+  const { toggle, isOpen, close } = useSidebar();
+  console.log(isOpen);
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-md fixed w-full z-10 ">
       <div className="flex item-center justify-between p-4">
+        <div>
+            
+        <Hamburgar toggle={toggle}/>
+
         <Link
           to="/"
-          className="text-xl font-bold text-gray-900 dark:text-white">
+          className="text-xl font-bold text-gray-900 dark:text-white ml-5">
           돌림판
         </Link>
+        <Sidebar isOpen={isOpen} onClose={close}/>
+            </div> 
         <>
           {!accessToken && (
             <div className="space-x-6">
