@@ -11,17 +11,17 @@ export type Likes = {
   lpId: number;
 };
 
-export type ResponseLpDto = CursorBasedResponse<{
-  data: {
-    id: number;
-    title: string;
-    contents: string;
-    thumbnail: string;
-    publicshed: boolean;
-    authorId: number;
-    createdAt: Date;
-    updatedAt: Date;
-    tags: Tag[];
-    likes: Likes[];
-  }[];
-}>;
+export type Lp = {
+  id: number;
+  title: string;
+  contents: string;
+  thumbnail: string;
+  publicshed: boolean;
+  authorId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  tags: Tag[];
+  likes: Likes[];
+};
+
+export type ResponseLpDto = CursorBasedResponse<Lp[]>;

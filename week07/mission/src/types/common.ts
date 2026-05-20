@@ -1,12 +1,12 @@
 import { PAGINATION_ORDER } from '../enums/common';
-export type commonRespons<T> = {
+export type CommonResponse<T> = {
   status: boolean;
   statusCode: number;
   message: string;
   data: T;
 };
 
-export type CursorBasedResponse<T> = commonRespons<{
+export type CursorBasedResponse<T> = CommonResponse<{
   data: T;
   nextCursor: number | null;
   hasNext: boolean;
