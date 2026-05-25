@@ -1,18 +1,18 @@
-import { Provider } from 'react-redux';
-import store from './store/store';
-import Navbar from './components/Navbar';
-import CartList from './components/CartList';
-import PriceBox from './components/PriceBox';
+import { Provider } from "react-redux";
+import store from "./store/store";
+import Navbar from "./components/Navbar";
+import CartList from "./components/CartList";
+import PriceBox from "./components/PriceBox";
+import Modal from "./components/Modal";
 
 function App() {
   return (
-    <>
-      <Provider store={store}>
-        <Navbar />
-        <CartList />
-        <PriceBox />
-      </Provider>
-    </>
+    <Provider store={store}>
+      <Navbar />
+      <CartList />
+      <PriceBox />
+      <Modal />
+    </Provider>
   );
 }
 

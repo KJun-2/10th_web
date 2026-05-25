@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../hooks/useCustomRedux.ts";
-import { decrease, increase, removeItem } from "../slices/cartSlice.ts";
+import { decrease, increase, removeItem } from "../features/cart/cartSlice";
 import type { Lp } from "../types/cart";
 
 interface CartItemProps {

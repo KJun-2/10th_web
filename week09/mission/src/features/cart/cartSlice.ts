@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import cartItems from "../constants/cartItems";
-import type { CartItems } from "../types/cart";
+import cartItems from "../../constants/cartItems";
+import type { CartItems } from "../../types/cart";
 import { type PayloadAction } from "@reduxjs/toolkit";
 
 export interface CartState {
@@ -10,7 +10,7 @@ export interface CartState {
 }
 
 const initialState: CartState = {
-  cartItems: cartItems ,
+  cartItems: cartItems,
   amount: 0,
   total: 0,
 };
@@ -19,6 +19,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    //todo 증가
     increase: (state, action: PayloadAction<{ id: string }>) => {
       const itemId = action.payload.id;
 
@@ -29,6 +30,7 @@ const cartSlice = createSlice({
       }
     },
 
+    //todo 감소
     decrease: (state, action: PayloadAction<{ id: string }>) => {
       const itemId = action.payload.id;
 
@@ -56,7 +58,6 @@ const cartSlice = createSlice({
       let total = 0;
 
       state.cartItems.forEach((item) => {
-
         amount += item.amount;
         total += item.amount * item.price;
       });

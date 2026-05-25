@@ -1,19 +1,19 @@
-import { useAppDispatch, useAppSelector } from "../hooks/useCustomRedux.ts";
-import { clearCart } from "../slices/cartSlice.ts";
+import { useAppDispatch, useAppSelector } from "../hooks/useCustomRedux";
+import { openModal } from "../features/modal/modalSlice";
 
 const PriceBox = () => {
   const { total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
-  const handleInitializeCart = () => {
-    dispatch(clearCart());
+  const handleOpenModal = () => {
+    dispatch(openModal());
   };
 
   return (
     <div className="p-12 flex justify-between">
       <div>
         <button
-          onClick={handleInitializeCart}
+          onClick={handleOpenModal}
           className="border p-4 rounded-md cursor-pointer"
         >
           장바구니 초기화

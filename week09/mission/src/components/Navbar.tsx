@@ -1,7 +1,7 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "../hooks/useCustomRedux.ts";
 import { useEffect } from "react";
-import { calculateTotals } from "../slices/cartSlice.ts";
+import { calculateTotals } from "../features/cart/cartSlice";
 
 const Navbar = () => {
   const { amount, cartItems } = useAppSelector((state) => state.cart);
