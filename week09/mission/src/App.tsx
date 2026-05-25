@@ -1,15 +1,19 @@
-import './App.css'
-import Navbar from './components/NavBar'
-import CartList from './components/CarList'
+import { Provider } from 'react-redux';
+import store from './store/store';
+import Navbar from './components/Navbar';
+import CartList from './components/CartList';
+import PriceBox from './components/PriceBox';
 
 function App() {
-
   return (
     <>
-      <Navbar />
-      <CartList />
+      <Provider store={store}>
+        <Navbar />
+        <CartList />
+        <PriceBox />
+      </Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
