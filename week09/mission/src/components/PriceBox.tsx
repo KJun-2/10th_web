@@ -1,12 +1,12 @@
-import { useAppDispatch, useAppSelector } from "../hooks/useCustomRedux";
-import { openModal } from "../features/modal/modalSlice";
+import { useCartInfo } from "../hooks/useCartStore";
+import { useModalActions } from "../hooks/useModalStore";
 
 const PriceBox = () => {
-  const { total } = useAppSelector((state) => state.cart);
-  const dispatch = useAppDispatch();
+  const { total } = useCartInfo();
+  const { openModal } = useModalActions();
 
   const handleOpenModal = () => {
-    dispatch(openModal());
+    openModal();
   };
 
   return (
